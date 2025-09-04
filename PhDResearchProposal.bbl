@@ -1,0 +1,69 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{Adebayo2018Sanity}
+Adebayo, J., Gilmer, J., Muelly, M., Goodfellow, I., Hardt, M., Kim, B.: Sanity checks for saliency maps. In: NeurIPS (2018)
+
+\bibitem{BassanKatz2023FormalXAI}
+Bassan, S., Katz, G.: Towards formal {XAI}: Formally approximate minimal explanations of neural networks. In: TACAS (LNCS 13993). pp. 187--207. Springer (2023). \doi{10.1007/978-3-031-30823-9_10}
+
+\bibitem{BLTTKK-JMLR2020}
+Bunel, R., Lu, J., Turkaslan, I., Torr, P.H.S., Kohli, P., Kumar, M.P.: Branch and bound for piecewise linear neural network verification. Journal of Machine Learning Research  \textbf{21}(42),  1--39 (2020), \url{https://jmlr.org/papers/v21/19-468.html}
+
+\bibitem{Carter2019SIS}
+Carter, B., Mueller, J., Jain, S., Gifford, D.: What made you do this? understanding black-box decisions with sufficient input subsets. In: AISTATS (PMLR 89). pp. 567--576 (2019), \url{https://proceedings.mlr.press/v89/carter19a.html}
+
+\bibitem{Gasse2019LearningToBranch}
+Gasse, M., Ch{\'e}telat, D., Ferroni, E., Charlin, L., Lodi, A.: Learning to branch in mixed integer programming with graph convolutional neural networks. In: NeurIPS (2019)
+
+\bibitem{Ghorbani2019Fragile}
+Ghorbani, A., Abid, A., Zou, J.: Interpretation of neural networks is fragile. In: AAAI. pp. 3681--3688 (2019). \doi{10.1609/aaai.v33i01.33013681}
+
+\bibitem{Haarnoja2018SAC}
+Haarnoja, T., Zhou, A., Abbeel, P., Levine, S.: Soft actor-critic: Off-policy maximum entropy deep reinforcement learning with a stochastic actor. In: ICML (2018)
+
+\bibitem{vanHasselt2016DoubleDQN}
+van Hasselt, H., Guez, A., Silver, D.: Deep reinforcement learning with double q-learning. In: AAAI (2016)
+
+\bibitem{hester2018dqfd}
+Hester, T., Vecerik, M., Pietquin, O., Lanctot, M., Schaul, T., Piot, B., Rusu, A.A., Horgan, D., Quan, J., Sendonaris, A., Osband, I., Dulac-Arnold, G., Agapiou, J.P., Leibo, J.Z., Gruslys, A., Azar, M.G., Rezende, D.J., Huang, A., Botvinick, M.M., Hassabis, D., Silver, D., Singh, S., Legg, S.: Deep q-learning from demonstrations. In: AAAI (2018)
+
+\bibitem{KBD17}
+Katz, G., Barrett, C., Dill, D.L., Julian, K., Kochenderfer, M.J.: Reluplex: An efficient smt solver for verifying deep neural networks. In: Computer Aided Verification (CAV). Lecture Notes in Computer Science, vol. 10426, pp. 97--117. Springer (2017). \doi{10.1007/978-3-319-63387-9_5}
+
+\bibitem{Katz2019Marabou}
+Katz, G., Huang, D.A., Ibeling, D., Julian, K., Lazarus, C., Lim, R., Shah, P., Thakoor, S., Wu, H., Zelji\'{c}, A., Dill, D.L., Kochenderfer, M.J., Barrett, C.: The marabou framework for verification and analysis of deep neural networks. In: CAV (LNCS 11561). pp. 443--452. Springer (2019). \doi{10.1007/978-3-030-25540-4_26}
+
+\bibitem{Khalil2016LearningToBranch}
+Khalil, E.B., Bodic, P.L., Song, L., Nemhauser, G.L., Dilkina, B.: Learning to branch in mixed integer programming. In: AAAI (2016)
+
+\bibitem{Kindermans2017Unreliability}
+Kindermans, P., Hooker, S., Adebayo, J., Alber, M., Sch{\"{u}}tt, K.T., D{\"{a}}hne, S., Erhan, D., Kim, B.: The (un)reliability of saliency methods. arXiv preprint arXiv:1711.00867  (2017)
+
+\bibitem{Lundberg2017SHAP}
+Lundberg, S.M., Lee, S.I.: A unified approach to interpreting model predictions. In: NeurIPS. pp. 4765--4774 (2017)
+
+\bibitem{MarquesSilvaIgnatiev2022FormalXAI}
+Marques{-}Silva, J., Ignatiev, A.: Delivering trustworthy {AI} through formal {XAI}. In: AAAI. pp. 12342--12350 (2022)
+
+\bibitem{Ribeiro2016LIME}
+Ribeiro, M.T., Singh, S., Guestrin, C.: {``Why Should I Trust You?''} explaining the predictions of any classifier. In: KDD. pp. 1135--1144 (2016). \doi{10.1145/2939672.2939778}
+
+\bibitem{Rudin2019StopExplaining}
+Rudin, C.: Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead. Nature Machine Intelligence  \textbf{1},  206--215 (2019). \doi{10.1038/s42256-019-0048-x}
+
+\bibitem{Schulman2017PPO}
+Schulman, J., Wolski, F., Dhariwal, P., Radford, A., Klimov, O.: Proximal policy optimization algorithms. arXiv preprint arXiv:1707.06347  (2017)
+
+\bibitem{Slack2020FoolingLIMESHAP}
+Slack, D., Hilgard, S., Jia, E., Singh, S., Lakkaraju, H.: Fooling lime and shap: Adversarial attacks on post hoc explanation methods. In: AIES. pp. 180--190 (2020). \doi{10.1145/3375627.3375830}
+
+\bibitem{Sundararajan2017IG}
+Sundararajan, M., Taly, A., Yan, Q.: Axiomatic attribution for deep networks. In: ICML. pp. 3319--3328 (2017)
+
+\bibitem{WuWuBarrett2023VeriX}
+Wu, M., Wu, H., Barrett, C.: Verix: Towards verified explainability of deep neural networks. In: NeurIPS. vol.~36, pp. 22247--22268 (2023)
+
+\end{thebibliography}

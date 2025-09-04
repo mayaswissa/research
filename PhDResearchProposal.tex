@@ -1,0 +1,150 @@
+\documentclass{llncs}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{verbatim}
+\usepackage{paralist}
+\usepackage{cancel}
+\usepackage{xspace}
+\usepackage{cleveref}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{algorithmicx,algpseudocode}
+\usepackage{makecell}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{cite}
+\usepackage{booktabs}
+\usepackage[section]{placeins}
+\usepackage{tikz,ifthen,pgfplots,forest}
+\setcounter{MaxMatrixCols}{20}
+\definecolor{navy}{RGB}{0,0,128}
+\definecolor{dodgerblue}{RGB}{30,144,255}
+\title{PhD Research Proposal}
+\titlerunning{Neural Networks Verification}
+\author{
+  \vspace{-1.5cm}
+ 	Maya Swisa, Advisor: Prof. Guy Katz
+}
+ \institute{ 
+ 	The Hebrew University of Jerusalem
+ }
+\begin{document} 
+\maketitle
+
+\section{Introduction}\label{sec:Introduction}
+Deep neural networks (DNNs) are now widely employed across various domains, from computer vision to natural language processing, 
+leading to the transformation of a vast number of applications. Their remarkable performance, particularly in complex pattern recognition tasks, 
+has led to their deployment in increasingly safety---critical systems, such as autonomous vehicles, medical diagnosis tools, and aerospace control systems.  
+However, despite their exceptional performance, the inherent complexity of DNNs raises significant concerns about their reliability. 
+This is particularly evident with adversarial examples, where minor, often imperceptible, input perturbations can lead to misclassifications. 
+The lack of robust guarantees highlights a critical need for formal verification, which has thus emerged as a crucial area of research to ensure the robustness, 
+safety, and reliability of these models.
+
+Despite advancements, a substantial disparity remains between the scale of DNNs amenable to current verification techniques 
+and the complexity of those required for real world applications. 
+This is primarily due to the fact DNN verification is computationally intractable in the worst case.
+The general problem of verifying properties of DNNs with piecewise---linear activations has been shown to be NP---complete~\cite{KBD17}, indicating that the computational 
+cost can grow exponentially with the size of the network. This intractability necessitates the development of sophisticated and efficient verification techniques.
+
+Mixed Integer Programming (MIP) and Satisfiability Modulo Theories (SMT) based solvers are designed to provide sound proofs for the correctness of a 
+DNN, or provide a counterexample, by encoding the verification problem as a constraint satisfaction problem (CSP). 
+While these approaches have made the verification problem feasible for many standard benchmarks, they still suffer from scalability limitations when handling complex
+properties and networks, and the DNN verication community is still facing several challenges limiting the applicability of the verication tools to
+real---world DNNs.
+
+The challenge of deploying DNNs extends beyond just robustness and reliability to a fundamental issue of explainability. 
+As these models are used in critical, real---world applications, their ``black box'' nature—their ability to produce a correct output without a transparent, 
+human understandable reason—has become a significant barrier. A lack of explainability erodes trust, hinders debugging efforts, 
+and raises serious ethical and legal concerns, particularly in regulated industries. Therefore, alongside formal verification, 
+the development of methods for formally explaining a model's decisions has become a crucial area of research. 
+This involves moving beyond intuitive but informal explanations to a rigorous, computationally-grounded framework that can guarantee the 
+validity and fidelity of the explanation itself.
+
+\subsection{Research objectives.}
+My research is aimed toward overcoming two of the challenges:
+\paragraph{Scalability.} Scalability remains a major challenge in DNN verification. 
+While modern DNNs can have hundreds of thousands of neurons, current verification tools 
+are typically limited to networks with only thousands of neurons, making them relevant to 
+a small fraction of industry used DNNs. This intractability is a result of the problem's inherent complexity; 
+even for simple cases, DNN verification is considered NP-complete~\cite{KBD17}.
+
+My research plan focuses on addressing this by enhancing my previous work--- Reinforcement Learning Guided 
+Heuristics for Neural Network Verification.
+\paragraph{Explainability.}
+Beyond verification, explainability is another critical challenge in deploying deep neural networks (DNNs) 
+in real---world applications. It addresses the ``black box'' nature of DNNs by providing human---understandable 
+reasons for a model's predictions. The need for explainability is driven by the growing demand for trust, 
+accountability, and transparency in AI systems. In high---stakes domains like autonomous vehicles and medical 
+diagnostics, an explanation is not just helpful but essential for debugging errors, ensuring ethical compliance, 
+and building user confidence. Current research in explainability often focuses on the computational complexity 
+of generating explanations, as shown in the provided image, arguing that a model is only truly interpretable 
+if its explanations can be produced efficiently.
+\paragraph{}
+The next section will first outline the research have already completed and its preliminary results. 
+Then, I will detail future research directions I am aspiring to follow.
+
+\section{My Proposed Research.}
+\subsubsection{Objective 1: RL---guided verification}
+My previous research introduced an RL---guided splitting heuristic that integrates learning 
+from demonstrations with Double DQN inside an SMT---based verifie~\cite{Katz2019Marabou,KBD17,vanHasselt2016DoubleDQN,hester2018dqfd}.
+A key advantage of this approach is that the trained agent, once deployed, operates on unseen 
+properties and networks without needing to be retrained for each new query. It initially leverages 
+the most effective heuristic to guide its initial decisions but continues to refine its policy via 
+self-play within each verification run. In practice, this enables the agent to reduce both the average 
+number of splits and total verification time across a diverse set of properties 
+and networks after just one training session.
+
+I propose to enhance this strategy by exploring and implementing promising directions. 
+A key aspect of this research will be investigating a broader range of RL algorithms. 
+While Double DQN proved effective, other algorithms like Proximal Policy Optimization (PPO) or 
+Soft Actor---Critic (SAC) may offer superior performance or training efficienc~\cite{Schulman2017PPO,Haarnoja2018SAC}. 
+PPO, for instance, is known for its stability and strong performance in complex environments, 
+while SAC is notable for its sample efficiency and ability to handle continuous action spaces, 
+which could be relevant for future extensions of the problem. By systematically evaluating these 
+and other algorithms, I may identify the most suitable learning framework for our domain.
+
+Furthermore, I aim to extend the application of RL beyond just the branching heuristic.
+The verification process—particularly in branch---and---bound solvers—requires a sequence of
+decisions: not only which split to take, but also which bound tightening/relaxation to run
+and when to prune nodes based on bounds~\cite{BLTTKK-JMLR2020,KBD17,Katz2019Marabou}.
+I hypothesize that a single, comprehensive RL agent could learn to manage the entire verification flow, making real-time, 
+adaptive decisions across the entire solver. Related progress in learning decision policies for 
+mixed-integer optimization suggests feasibility~\cite{Khalil2016LearningToBranch,Gasse2019LearningToBranch}, 
+which I aim adapt to neural network verification.  
+This would represent a significant step toward an end---to---end learning based verification engine.
+
+\subsubsection{Objective 2: Explainability}
+The "black box" nature of deep neural networks is a major barrier to their adoption in safety critical domains~\cite{Rudin2019StopExplaining}. 
+While explainability methods have emerged to provide human understandable reasons for a model's predictions~\cite{Ribeiro2016LIME,Lundberg2017SHAP,Sundararajan2017IG}, 
+many existing approaches lack formal guarantees. Existing techniques often rely on heuristics 
+that can be misleading or even manipulated, producing explanations that are not faithful to the model's true decision-making process~\cite{Adebayo2018Sanity,Kindermans2017Unreliability,Ghorbani2019Fragile,Slack2020FoolingLIMESHAP}. 
+This poses a significant risk: users who rely on these explanations may develop a false sense of trust, 
+potentially leading to dangerous decisions in high stakes applications like medical diagnosis or autonomous driving~\cite{Rudin2019StopExplaining}.
+
+To address this, my research aims to bridge the gap between explainability and formal verification by developing 
+methods that provide provably trustworthy explanations~\cite{MarquesSilvaIgnatiev2022FormalXAI,BassanKatz2023FormalXAI,WuWuBarrett2023VeriX}.
+This goes beyond simply generating a plausible story for a model's behavior. 
+It intends to offer explanations that are backed by mathematical guarantees, ensuring they accurately reflect the model's internal logic.
+
+While some initial research on formal explainability exists~\cite{Carter2019SIS,MarquesSilvaIgnatiev2022FormalXAI,BassanKatz2023FormalXAI,WuWuBarrett2023VeriX},
+many open questions remain, particularly in the context of modern, 
+large-scale models. My work will focus on three key areas:
+\begin{itemize}
+  \item \textbf{Scalability.} Existing methods often struggle with the size of contemporary networks. 
+  I will investigate how to develop efficient algorithms that can generate verifiable explanations for large models, 
+  including LLMs, where the sheer number of parameters presents a unique challenge. 
+  \item \textbf{Theoretical Foundations.} I will study the fundamental properties of provably correct explanations. 
+  This includes tackling questions about what constitutes a meaningful and safe guarantee for a given explanation, 
+  and investigating the trade offs between explanation complexity and guarantee strength~\cite{MarquesSilvaIgnatiev2022FormalXAI,BassanKatz2023FormalXAI,WuWuBarrett2023VeriX}.  
+\end{itemize}
+
+\paragraph{}
+To summarize, My research proposal addresses the critical challenges of ensuring the reliability and safety of deep neural networks (DNNs), 
+particularly as they are deployed in safety---critical domains. 
+My goal is to develop methods that provide provably trustworthy explanations for a model's behavior, and enhenced formal verification of DNN properties, ensuring not only that a system is safe 
+but also that its reasoning is transparent and understandable to human operators.
+\bibliographystyle{splncs04}
+\bibliography{PhDResearchProposal}
+\end{document}
