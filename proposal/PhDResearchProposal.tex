@@ -63,7 +63,7 @@ This involves moving beyond intuitive but informal explanations to a rigorous, c
 validity and fidelity of the explanation itself.
 
 \subsection{Research objectives.}
-My research is aimed toward overcoming two of the challenges:
+My research is aimed toward overcoming three of the challenges:
 \paragraph{Scalability.} Scalability remains a major challenge in DNN verification. 
 While modern DNNs can have hundreds of thousands of neurons, current verification tools 
 are typically limited to networks with only thousands of neurons, making them relevant to 
@@ -81,6 +81,14 @@ diagnostics, an explanation is not just helpful but essential for debugging erro
 and building user confidence. Current research in explainability often focuses on the computational complexity 
 of generating explanations, as shown in the provided image, arguing that a model is only truly interpretable 
 if its explanations can be produced efficiently.
+
+\paragraph{Complexity of the Reachability Problem.}
+Despite the progress in neural network verification, we lack a principled understanding of when core decision problems are tractable. 
+The complexity hinges on modeling choices: for example, output reachability is proven to be 
+NP---complete even for small and shallow ReLU networks~\cite{SaLa21}.
+For message passing neural networks over unbounded graphs, formal verification can be impossible in general~\cite{SaLa23}. 
+Across broader activation families, the complexity appears highly sensitive to activation choices and error tolerances.
+
 \paragraph{}
 The next section will first outline the research have already completed and its preliminary results. 
 Then, I will detail future research directions I am aspiring to follow.
@@ -106,7 +114,7 @@ which could be relevant for future extensions of the problem. By systematically 
 and other algorithms, I may identify the most suitable learning framework for our domain.
 
 Furthermore, I aim to extend the application of RL beyond just the branching heuristic.
-The verification process—particularly in branch---and---bound solvers—requires a sequence of
+The verification process—particularly in branch and bound solvers requires a sequence of
 decisions: not only which split to take, but also which bound tightening/relaxation to run
 and when to prune nodes based on bounds~\cite{BLTTKK-JMLR2020,KBD17,Katz2019Marabou}.
 I hypothesize that a single, comprehensive RL agent could learn to manage the entire verification flow, making real-time, 
@@ -116,10 +124,11 @@ which I aim adapt to neural network verification.
 This would represent a significant step toward an end---to---end learning based verification engine.
 
 \subsubsection{Objective 2: Explainability}
-The "black box" nature of deep neural networks is a major barrier to their adoption in safety critical domains~\cite{Rudin2019StopExplaining}. 
+The ``black box'' nature of deep neural networks is a major barrier to their adoption in safety critical domains~\cite{Rudin2019StopExplaining}. 
 While explainability methods have emerged to provide human understandable reasons for a model's predictions~\cite{Ribeiro2016LIME,Lundberg2017SHAP,Sundararajan2017IG}, 
 many existing approaches lack formal guarantees. Existing techniques often rely on heuristics 
-that can be misleading or even manipulated, producing explanations that are not faithful to the model's true decision-making process~\cite{Adebayo2018Sanity,Kindermans2017Unreliability,Ghorbani2019Fragile,Slack2020FoolingLIMESHAP}. 
+that can be misleading or even manipulated, producing explanations that are not faithful to the 
+model's true decision-making process~\cite{Adebayo2018Sanity,Kindermans2017Unreliability,Ghorbani2019Fragile,Slack2020FoolingLIMESHAP}. 
 This poses a significant risk: users who rely on these explanations may develop a false sense of trust, 
 potentially leading to dangerous decisions in high stakes applications like medical diagnosis or autonomous driving~\cite{Rudin2019StopExplaining}.
 
@@ -137,13 +146,27 @@ large-scale models. My work will focus on three key areas:
   including LLMs, where the sheer number of parameters presents a unique challenge. 
   \item \textbf{Theoretical Foundations.} I will study the fundamental properties of provably correct explanations. 
   This includes tackling questions about what constitutes a meaningful and safe guarantee for a given explanation, 
-  and investigating the trade offs between explanation complexity and guarantee strength~\cite{MarquesSilvaIgnatiev2022FormalXAI,BassanKatz2023FormalXAI,WuWuBarrett2023VeriX}.  
+  and investigating the trade offs between explanation complexity and 
+  guarantee strength~\cite{MarquesSilvaIgnatiev2022FormalXAI,BassanKatz2023FormalXAI,WuWuBarrett2023VeriX}.  
 \end{itemize}
 
+\subsubsection{Objective 3: Complexity of the Reachability Problem.} 
+Following recent advances on the theoretical limits of neural network verification, 
+I will investigate how the computational complexity of core decision problems
+depends on modeling choices network architecture (feed---forward, convolutional, message---passing), 
+activation classes (piecewise---linear vs.\ smooth), and the expressiveness of the specification language. 
+Prior work shows impossibility results for verifying certain message---passing 
+neural networks over unbounded graphs~\cite{SaLa23}, NP---completeness of reachability even for the simplest 
+ReLU networks~\cite{SaLa21}, geometric conditions yielding tractable subclasses~\cite{FeSh21} 
+and evidence that complexity depends critically on activation families and tolerance models, 
+with links to the exponential function problem~\cite{Wu23,IsZoBaKa23}. 
+I aim to provide complexity landscape that guide algorithm and benchmark design for scalable verification.
+
 \paragraph{}
-To summarize, My research proposal addresses the critical challenges of ensuring the reliability and safety of deep neural networks (DNNs), 
+To summarize, My research proposal addresses the critical challenges of ensuring the reliability and safety of DNNs, 
 particularly as they are deployed in safety---critical domains. 
-My goal is to develop methods that provide provably trustworthy explanations for a model's behavior, and enhenced formal verification of DNN properties, ensuring not only that a system is safe 
+My goal is to develop methods that provide provably trustworthy explanations for a model's behavior, 
+and enhenced formal verification of DNN properties, ensuring not only that a system is safe 
 but also that its reasoning is transparent and understandable to human operators.
 \bibliographystyle{splncs04}
 \bibliography{PhDResearchProposal}
